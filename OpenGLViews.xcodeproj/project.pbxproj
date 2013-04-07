@@ -18,16 +18,12 @@
 		CB4A36BB170E04CE007BBEF9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36BA170E04CE007BBEF9 /* Default-568h@2x.png */; };
 		CB4A36BE170E04CE007BBEF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36BD170E04CE007BBEF9 /* ViewController.m */; };
 		CB4A36C1170E04CE007BBEF9 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36BF170E04CE007BBEF9 /* ViewController.xib */; };
-		CB4A36CA170E05CD007BBEF9 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36C9170E05CD007BBEF9 /* EAGLView.m */; };
 		CB4A36D0170E064E007BBEF9 /* AnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */; };
-		CB4A36D1170E064E007BBEF9 /* AnimationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36CF170E064E007BBEF9 /* AnimationViewController.xib */; };
-		CB4A36D6170E07C7007BBEF9 /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36D5170E07C7007BBEF9 /* Renderer.m */; };
 		CB4A36D8170E084F007BBEF9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36D7170E084F007BBEF9 /* QuartzCore.framework */; };
-		CB4A36DB170E0D94007BBEF9 /* Shaders.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36DA170E0D94007BBEF9 /* Shaders.m */; };
-		CB4A36DE170E0EE4007BBEF9 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36DD170E0EE4007BBEF9 /* matrix.c */; };
 		CB4A36E0170E116F007BBEF9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36DF170E116F007BBEF9 /* OpenGLES.framework */; };
-		CB4A36E5170E1294007BBEF9 /* vertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36E4170E1294007BBEF9 /* vertexShader.glsl */; };
-		CB4A36E7170F1CCD007BBEF9 /* fragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36E6170F1CCD007BBEF9 /* fragmentShader.glsl */; };
+		CB4A36E917102038007BBEF9 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36E817102038007BBEF9 /* texture.png */; };
+		CB4A36F017109810007BBEF9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36EF17109810007BBEF9 /* GLKit.framework */; };
+		CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36F21711EF18007BBEF9 /* Sprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,21 +43,14 @@
 		CB4A36BC170E04CE007BBEF9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CB4A36BD170E04CE007BBEF9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CB4A36C0170E04CE007BBEF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		CB4A36C8170E05CD007BBEF9 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
-		CB4A36C9170E05CD007BBEF9 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
 		CB4A36CD170E064E007BBEF9 /* AnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationViewController.h; sourceTree = "<group>"; };
 		CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationViewController.m; sourceTree = "<group>"; };
-		CB4A36CF170E064E007BBEF9 /* AnimationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnimationViewController.xib; sourceTree = "<group>"; };
-		CB4A36D4170E07C7007BBEF9 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
-		CB4A36D5170E07C7007BBEF9 /* Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Renderer.m; sourceTree = "<group>"; };
 		CB4A36D7170E084F007BBEF9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		CB4A36D9170E0D94007BBEF9 /* Shaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shaders.h; sourceTree = "<group>"; };
-		CB4A36DA170E0D94007BBEF9 /* Shaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shaders.m; sourceTree = "<group>"; };
-		CB4A36DC170E0EDB007BBEF9 /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
-		CB4A36DD170E0EE4007BBEF9 /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
 		CB4A36DF170E116F007BBEF9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		CB4A36E4170E1294007BBEF9 /* vertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertexShader.glsl; sourceTree = "<group>"; };
-		CB4A36E6170F1CCD007BBEF9 /* fragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragmentShader.glsl; sourceTree = "<group>"; };
+		CB4A36E817102038007BBEF9 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
+		CB4A36EF17109810007BBEF9 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		CB4A36F11711EF18007BBEF9 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		CB4A36F21711EF18007BBEF9 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB4A36F017109810007BBEF9 /* GLKit.framework in Frameworks */,
 				CB4A36E0170E116F007BBEF9 /* OpenGLES.framework in Frameworks */,
 				CB4A36D8170E084F007BBEF9 /* QuartzCore.framework in Frameworks */,
 				CB4A36A5170E04CE007BBEF9 /* UIKit.framework in Frameworks */,
@@ -100,6 +90,7 @@
 		CB4A36A3170E04CE007BBEF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CB4A36EF17109810007BBEF9 /* GLKit.framework */,
 				CB4A36DF170E116F007BBEF9 /* OpenGLES.framework */,
 				CB4A36D7170E084F007BBEF9 /* QuartzCore.framework */,
 				CB4A36A4170E04CE007BBEF9 /* UIKit.framework */,
@@ -112,7 +103,6 @@
 		CB4A36AA170E04CE007BBEF9 /* OpenGLViews */ = {
 			isa = PBXGroup;
 			children = (
-				CB4A36CC170E05EF007BBEF9 /* Screens */,
 				CB4A36C7170E05A4007BBEF9 /* AnimationController */,
 				CB4A36B3170E04CE007BBEF9 /* AppDelegate.h */,
 				CB4A36B4170E04CE007BBEF9 /* AppDelegate.m */,
@@ -127,6 +117,7 @@
 		CB4A36AB170E04CE007BBEF9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CB4A36E817102038007BBEF9 /* texture.png */,
 				CB4A36AC170E04CE007BBEF9 /* OpenGLViews-Info.plist */,
 				CB4A36AD170E04CE007BBEF9 /* InfoPlist.strings */,
 				CB4A36B0170E04CE007BBEF9 /* main.m */,
@@ -141,52 +132,20 @@
 		CB4A36C7170E05A4007BBEF9 /* AnimationController */ = {
 			isa = PBXGroup;
 			children = (
-				CB4A36D3170E0749007BBEF9 /* OpenGL */,
-				CB4A36D2170E0737007BBEF9 /* UIKit */,
-			);
-			name = AnimationController;
-			sourceTree = "<group>";
-		};
-		CB4A36CC170E05EF007BBEF9 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Screens;
-			sourceTree = "<group>";
-		};
-		CB4A36D2170E0737007BBEF9 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
 				CB4A36CD170E064E007BBEF9 /* AnimationViewController.h */,
 				CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */,
-				CB4A36CF170E064E007BBEF9 /* AnimationViewController.xib */,
-				CB4A36C8170E05CD007BBEF9 /* EAGLView.h */,
-				CB4A36C9170E05CD007BBEF9 /* EAGLView.m */,
+				CB4A36D3170E0749007BBEF9 /* OpenGL */,
 			);
-			name = UIKit;
+			name = AnimationController;
 			sourceTree = "<group>";
 		};
 		CB4A36D3170E0749007BBEF9 /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
-				CB4A36E1170E125A007BBEF9 /* Shaders */,
-				CB4A36D4170E07C7007BBEF9 /* Renderer.h */,
-				CB4A36D5170E07C7007BBEF9 /* Renderer.m */,
-				CB4A36DC170E0EDB007BBEF9 /* matrix.h */,
-				CB4A36DD170E0EE4007BBEF9 /* matrix.c */,
+				CB4A36F11711EF18007BBEF9 /* Sprite.h */,
+				CB4A36F21711EF18007BBEF9 /* Sprite.m */,
 			);
 			name = OpenGL;
-			sourceTree = "<group>";
-		};
-		CB4A36E1170E125A007BBEF9 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				CB4A36D9170E0D94007BBEF9 /* Shaders.h */,
-				CB4A36DA170E0D94007BBEF9 /* Shaders.m */,
-				CB4A36E6170F1CCD007BBEF9 /* fragmentShader.glsl */,
-				CB4A36E4170E1294007BBEF9 /* vertexShader.glsl */,
-			);
-			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,9 +204,7 @@
 				CB4A36B9170E04CE007BBEF9 /* Default@2x.png in Resources */,
 				CB4A36BB170E04CE007BBEF9 /* Default-568h@2x.png in Resources */,
 				CB4A36C1170E04CE007BBEF9 /* ViewController.xib in Resources */,
-				CB4A36D1170E064E007BBEF9 /* AnimationViewController.xib in Resources */,
-				CB4A36E5170E1294007BBEF9 /* vertexShader.glsl in Resources */,
-				CB4A36E7170F1CCD007BBEF9 /* fragmentShader.glsl in Resources */,
+				CB4A36E917102038007BBEF9 /* texture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,11 +218,8 @@
 				CB4A36B1170E04CE007BBEF9 /* main.m in Sources */,
 				CB4A36B5170E04CE007BBEF9 /* AppDelegate.m in Sources */,
 				CB4A36BE170E04CE007BBEF9 /* ViewController.m in Sources */,
-				CB4A36CA170E05CD007BBEF9 /* EAGLView.m in Sources */,
 				CB4A36D0170E064E007BBEF9 /* AnimationViewController.m in Sources */,
-				CB4A36D6170E07C7007BBEF9 /* Renderer.m in Sources */,
-				CB4A36DB170E0D94007BBEF9 /* Shaders.m in Sources */,
-				CB4A36DE170E0EE4007BBEF9 /* matrix.c in Sources */,
+				CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
