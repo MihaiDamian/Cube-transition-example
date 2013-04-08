@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 #import "AnimationViewController.h"
+#import "FirstViewController.h"
 
 
-@interface ViewController ()
+@interface ViewController () <AnimationViewControllerDataSource>
 
 @end
 
@@ -22,10 +23,17 @@
     [super viewDidLoad];
     
     AnimationViewController *controller = [[AnimationViewController alloc] initWithNibName:nil bundle:nil];
+    controller.dataSource = self;
     [self addChildViewController:controller];
     controller.view.frame = self.view.bounds;
     [self.view addSubview:controller.view];
     [controller didMoveToParentViewController:self];
+}
+
+#pragma mark AnimationViewControllerDataSource
+- (UIView*)leftView
+{
+    return [[FirstViewController alloc] initWithNibName:nil bundle:nil].view;
 }
 
 @end

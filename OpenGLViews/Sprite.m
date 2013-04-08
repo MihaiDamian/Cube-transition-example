@@ -8,6 +8,8 @@
 
 #import "Sprite.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 
 typedef struct {
     CGPoint geometryVertex;
@@ -26,47 +28,69 @@ typedef struct {
 
 @property (nonatomic, strong) GLKBaseEffect * effect;
 @property (nonatomic, assign) TexturedQuad quad;
-@property (nonatomic, strong) GLKTextureInfo * textureInfo;
 @property (nonatomic, assign) float rotation;
+@property (nonatomic, assign) GLuint textureName;
 
 @end
 
 
 @implementation Sprite
 
-- (id)initWithFile:(NSString *)fileName effect:(GLKBaseEffect *)effect
+- (id)initWithView:(UIView*)view effect:(GLKBaseEffect *)effect
 {
     self = [super init];
     if(self != nil)
     {
         self.effect = effect;
         
-        NSError * error;
-        NSDictionary *options = @{GLKTextureLoaderOriginBottomLeft : @YES};
-        NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-        self.textureInfo = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-        if (self.textureInfo == nil)
-        {
-            NSLog(@"Error loading file: %@", [error localizedDescription]);
-            return nil;
-        }
-        
-        self.contentSize = CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+        [self prerenderView:view];
         
         TexturedQuad newQuad;
         newQuad.bl.geometryVertex = CGPointMake(0, 0);
-        newQuad.br.geometryVertex = CGPointMake(self.textureInfo.width, 0);
-        newQuad.tl.geometryVertex = CGPointMake(0, self.textureInfo.height);
-        newQuad.tr.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
+        newQuad.br.geometryVertex = CGPointMake(self.contentSize.width, 0);
+        newQuad.tl.geometryVertex = CGPointMake(0, self.contentSize.height);
+        newQuad.tr.geometryVertex = CGPointMake(self.contentSize.width, self.contentSize.height);
         
         newQuad.bl.textureVertex = CGPointMake(0, 0);
         newQuad.br.textureVertex = CGPointMake(1, 0);
         newQuad.tl.textureVertex = CGPointMake(0, 1);
         newQuad.tr.textureVertex = CGPointMake(1, 1);
         self.quad = newQuad;
-        
     }
+    
     return self;
+}
+
+- (void)prerenderView:(UIView*)view
+{
+    self.contentSize = view.bounds.size;
+    
+    // make space for an RGBA image of the view
+    GLubyte *pixelBuffer = (GLubyte *)malloc(4 * view.bounds.size.width * view.bounds.size.height);
+    
+    // create a suitable CoreGraphics context
+    CGColorSpaceRef colourSpace = CGColorSpaceCreateDeviceRGB();
+    CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big;
+    CGContextRef context = CGBitmapContextCreate(pixelBuffer, self.contentSize.width, self.contentSize.height, 8, 4 * self.contentSize.width, colourSpace, bitmapInfo);
+    CGColorSpaceRelease(colourSpace);
+    
+    // draw the view to the buffer
+    [view.layer renderInContext:context];
+    
+    // upload to OpenGL
+    glGenTextures(1, &_textureName);
+	glBindTexture(GL_TEXTURE_2D, self.textureName);
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self.contentSize.width, self.contentSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);    
+    
+    // clean up
+    CGContextRelease(context);
+    free(pixelBuffer);
 }
 
 - (GLKMatrix4)modelMatrix
@@ -80,7 +104,7 @@ typedef struct {
 
 - (void)render
 {    
-    self.effect.texture2d0.name = self.textureInfo.name;
+    self.effect.texture2d0.name = self.textureName;
     self.effect.texture2d0.enabled = YES;
     self.effect.transform.modelviewMatrix = self.modelMatrix;
     

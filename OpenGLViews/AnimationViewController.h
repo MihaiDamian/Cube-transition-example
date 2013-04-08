@@ -10,6 +10,15 @@
 #import <GLKit/GLKit.h>
 
 
+@protocol AnimationViewControllerDataSource
+
+- (UIView*)leftView;
+
+@end
+
+
 @interface AnimationViewController : GLKViewController
+
+@property (nonatomic, weak) id<AnimationViewControllerDataSource> dataSource;
 
 @end

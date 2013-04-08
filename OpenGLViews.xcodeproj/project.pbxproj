@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0D01201713364F0016AA12 /* FirstViewController.m */; };
+		CB0D01231713364F0016AA12 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0D01211713364F0016AA12 /* FirstViewController.xib */; };
 		CB4A36A5170E04CE007BBEF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36A4170E04CE007BBEF9 /* UIKit.framework */; };
 		CB4A36A7170E04CE007BBEF9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36A6170E04CE007BBEF9 /* Foundation.framework */; };
 		CB4A36A9170E04CE007BBEF9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36A8170E04CE007BBEF9 /* CoreGraphics.framework */; };
@@ -27,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB0D011F1713364F0016AA12 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		CB0D01201713364F0016AA12 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		CB0D01211713364F0016AA12 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		CB0D012417133BA10016AA12 /* glUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glUtil.h; sourceTree = "<group>"; };
 		CB4A36A1170E04CE007BBEF9 /* OpenGLViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB4A36A4170E04CE007BBEF9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CB4A36A6170E04CE007BBEF9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -70,6 +76,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB0D011E171336270016AA12 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB0D011F1713364F0016AA12 /* FirstViewController.h */,
+				CB0D01201713364F0016AA12 /* FirstViewController.m */,
+				CB0D01211713364F0016AA12 /* FirstViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		CB4A3698170E04CE007BBEF9 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +119,7 @@
 		CB4A36AA170E04CE007BBEF9 /* OpenGLViews */ = {
 			isa = PBXGroup;
 			children = (
+				CB0D011E171336270016AA12 /* ViewControllers */,
 				CB4A36C7170E05A4007BBEF9 /* AnimationController */,
 				CB4A36B3170E04CE007BBEF9 /* AppDelegate.h */,
 				CB4A36B4170E04CE007BBEF9 /* AppDelegate.m */,
@@ -144,6 +161,7 @@
 			children = (
 				CB4A36F11711EF18007BBEF9 /* Sprite.h */,
 				CB4A36F21711EF18007BBEF9 /* Sprite.m */,
+				CB0D012417133BA10016AA12 /* glUtil.h */,
 			);
 			name = OpenGL;
 			sourceTree = "<group>";
@@ -205,6 +223,7 @@
 				CB4A36BB170E04CE007BBEF9 /* Default-568h@2x.png in Resources */,
 				CB4A36C1170E04CE007BBEF9 /* ViewController.xib in Resources */,
 				CB4A36E917102038007BBEF9 /* texture.png in Resources */,
+				CB0D01231713364F0016AA12 /* FirstViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +239,7 @@
 				CB4A36BE170E04CE007BBEF9 /* ViewController.m in Sources */,
 				CB4A36D0170E064E007BBEF9 /* AnimationViewController.m in Sources */,
 				CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */,
+				CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +362,7 @@
 				CB4A36C6170E04CE007BBEF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

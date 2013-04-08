@@ -15,7 +15,7 @@
 @property (assign) GLKVector2 position;
 @property (assign) CGSize contentSize;
 
-- (id)initWithFile:(NSString *)fileName effect:(GLKBaseEffect *)effect;
+- (id)initWithView:(UIView*)view effect:(GLKBaseEffect *)effect;
 - (void)render;
 - (void)update:(float)dt;
 

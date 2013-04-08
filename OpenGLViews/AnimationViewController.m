@@ -39,7 +39,7 @@
     GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, self.view.frame.size.width, 0, self.view.frame.size.height, -1024, 1024);
     self.effect.transform.projectionMatrix = projectionMatrix;
     
-    self.sprite = [[Sprite alloc] initWithFile:@"texture.png" effect:self.effect];
+    self.sprite = [[Sprite alloc] initWithView:[self.dataSource leftView] effect:self.effect];
     self.sprite.position = GLKVector2Make(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
 }
 
