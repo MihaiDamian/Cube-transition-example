@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class FirstViewController;
+
+
+@protocol FirstViewControllerDelegate
+
+- (void)controllerIsReadyForAnimation:(FirstViewController*)controller;
+
+@end
+
+
 @interface FirstViewController : UIViewController
+
+@property (nonatomic, weak) id<FirstViewControllerDelegate> delegate;
 
 @end

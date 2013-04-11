@@ -16,10 +16,25 @@
 @property (nonatomic, strong) Sprite *sprite;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
+@property (nonatomic, strong) UIView *initialView;
+@property (nonatomic, strong) UIView *finalView;
+
 @end
 
 
 @implementation AnimationViewController
+
+- (id)initWithInitialView:(UIView*)initialView finalView:(UIView*)finalView
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if(self != nil)
+    {
+        self.initialView = initialView;
+        self.finalView = finalView;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -35,12 +50,15 @@
     view.context = self.context;
     [EAGLContext setCurrentContext:self.context];
     
-    self.effect = [GLKBaseEffect new];
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, self.view.frame.size.width, 0, self.view.frame.size.height, -1024, 1024);
-    self.effect.transform.projectionMatrix = projectionMatrix;
+    CGFloat contentScaleFactor = view.contentScaleFactor;
     
-    self.sprite = [[Sprite alloc] initWithView:[self.dataSource leftView] effect:self.effect];
-    self.sprite.position = GLKVector2Make(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    self.effect = [GLKBaseEffect new];
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, self.view.frame.size.width * contentScaleFactor, 0, self.view.frame.size.height * contentScaleFactor, -1024, 1024);
+    self.effect.transform.projectionMatrix = projectionMatrix;
+
+    self.initialView.contentScaleFactor = contentScaleFactor;
+    self.sprite = [[Sprite alloc] initWithView:self.initialView effect:self.effect];
+    self.sprite.position = GLKVector2Make(self.view.frame.size.width * contentScaleFactor / 2, self.view.frame.size.height * contentScaleFactor / 2);
 }
 
 - (void)update

@@ -63,16 +63,21 @@ typedef struct {
 
 - (void)prerenderView:(UIView*)view
 {
-    self.contentSize = view.bounds.size;
+    float contentScaleFactor = view.contentScaleFactor;
+    
+    self.contentSize = CGSizeMake(view.bounds.size.width * contentScaleFactor, view.bounds.size.height * contentScaleFactor);
     
     // make space for an RGBA image of the view
-    GLubyte *pixelBuffer = (GLubyte *)malloc(4 * view.bounds.size.width * view.bounds.size.height);
+    GLubyte *pixelBuffer = (GLubyte *)malloc(4 * self.contentSize.width * self.contentSize.height);
     
     // create a suitable CoreGraphics context
     CGColorSpaceRef colourSpace = CGColorSpaceCreateDeviceRGB();
     CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big;
     CGContextRef context = CGBitmapContextCreate(pixelBuffer, self.contentSize.width, self.contentSize.height, 8, 4 * self.contentSize.width, colourSpace, bitmapInfo);
     CGColorSpaceRelease(colourSpace);
+    
+    // Scale factor of the context and the view to be rendered need to match
+    CGContextScaleCTM(context, contentScaleFactor, contentScaleFactor);
     
     // draw the view to the buffer
     [view.layer renderInContext:context];
@@ -86,7 +91,13 @@ typedef struct {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self.contentSize.width, self.contentSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self.contentSize.width, self.contentSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
+    
+//    UIImage *image = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
+//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+//    NSData * binaryImageData = UIImagePNGRepresentation(image);
+//    [binaryImageData writeToFile:[basePath stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
     
     // clean up
     CGContextRelease(context);

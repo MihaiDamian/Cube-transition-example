@@ -11,7 +11,7 @@
 #import "FirstViewController.h"
 
 
-@interface ViewController () <AnimationViewControllerDataSource>
+@interface ViewController () <FirstViewControllerDelegate>
 
 @end
 
@@ -22,18 +22,21 @@
 {
     [super viewDidLoad];
     
-    AnimationViewController *controller = [[AnimationViewController alloc] initWithNibName:nil bundle:nil];
-    controller.dataSource = self;
-    [self addChildViewController:controller];
-    controller.view.frame = self.view.bounds;
-    [self.view addSubview:controller.view];
-    [controller didMoveToParentViewController:self];
+    FirstViewController *firstController = [[FirstViewController alloc] initWithNibName:nil bundle:nil];
+    [self addChildViewController:firstController];
+    [self.view addSubview:firstController.view];
+    [firstController didMoveToParentViewController:self];
+    firstController.delegate = self;
 }
 
-#pragma mark AnimationViewControllerDataSource
-- (UIView*)leftView
+#pragma mark FirstViewControllerDelegate
+- (void)controllerIsReadyForAnimation:(FirstViewController*)controller
 {
-    return [[FirstViewController alloc] initWithNibName:nil bundle:nil].view;
+    AnimationViewController *animationController = [[AnimationViewController alloc] initWithInitialView:controller.view finalView:nil];
+    [self addChildViewController:animationController];
+    animationController.view.frame = self.view.bounds;
+    [self.view addSubview:animationController.view];
+    [animationController didMoveToParentViewController:self];
 }
 
 @end
