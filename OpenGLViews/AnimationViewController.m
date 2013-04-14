@@ -10,7 +10,10 @@
 #import "Sprite.h"
 
 
-@interface AnimationViewController ()
+static GLfloat FOV = M_PI / 4;
+
+
+@interface AnimationViewController () <SpriteDelegate>
 
 @property (nonatomic, strong) EAGLContext *context;
 @property (nonatomic, strong) Sprite *sprite;
@@ -51,14 +54,15 @@
     [EAGLContext setCurrentContext:self.context];
     
     CGFloat contentScaleFactor = view.contentScaleFactor;
-    
+
     self.effect = [GLKBaseEffect new];
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, self.view.frame.size.width * contentScaleFactor, 0, self.view.frame.size.height * contentScaleFactor, -1024, 1024);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(FOV, view.frame.size.width / view.frame.size.height, -1, 100);
     self.effect.transform.projectionMatrix = projectionMatrix;
 
     self.initialView.contentScaleFactor = contentScaleFactor;
     self.sprite = [[Sprite alloc] initWithView:self.initialView effect:self.effect];
-    self.sprite.position = GLKVector2Make(self.view.frame.size.width * contentScaleFactor / 2, self.view.frame.size.height * contentScaleFactor / 2);
+    self.sprite.position = GLKVector2Make(0, 0);
+    self.sprite.delegate = self;
 }
 
 - (void)update
@@ -75,6 +79,15 @@
     glEnable(GL_BLEND);
     
     [self.sprite render];
+}
+
+#pragma mark SpriteDelegate
+- (GLKMatrix4)viewMatrix
+{
+    // Calculate eye Z position so that a slice through Z 0 has the same size as the view
+    float projectionOppositeAngle = M_PI - M_PI / 2 - FOV / 2;
+    float eyeZ = (sin(projectionOppositeAngle) * (self.view.frame.size.height * self.view.contentScaleFactor / 2)) / sin(FOV / 2);
+    return GLKMatrix4MakeLookAt(0, 0, eyeZ, 0, 0, 0, 0, 1, 0);
 }
 
 @end

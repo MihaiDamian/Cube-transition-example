@@ -12,22 +12,17 @@
 
 
 typedef struct {
-    CGPoint geometryVertex;
-    CGPoint textureVertex;
+    GLKVector3 geometryVertex;
+    GLKVector3 textureVertex;
 } TexturedVertex;
-
-typedef struct {
-    TexturedVertex bl;
-    TexturedVertex br;
-    TexturedVertex tl;
-    TexturedVertex tr;
-} TexturedQuad;
 
 
 @interface Sprite()
+{
+    TexturedVertex _texturedVertices[4];
+}
 
 @property (nonatomic, strong) GLKBaseEffect * effect;
-@property (nonatomic, assign) TexturedQuad quad;
 @property (nonatomic, assign) float rotation;
 @property (nonatomic, assign) GLuint textureName;
 
@@ -45,17 +40,15 @@ typedef struct {
         
         [self prerenderView:view];
         
-        TexturedQuad newQuad;
-        newQuad.bl.geometryVertex = CGPointMake(0, 0);
-        newQuad.br.geometryVertex = CGPointMake(self.contentSize.width, 0);
-        newQuad.tl.geometryVertex = CGPointMake(0, self.contentSize.height);
-        newQuad.tr.geometryVertex = CGPointMake(self.contentSize.width, self.contentSize.height);
+        _texturedVertices[0].geometryVertex = GLKVector3Make(0, 0, 0);
+        _texturedVertices[1].geometryVertex = GLKVector3Make(self.contentSize.width, 0, 0);
+        _texturedVertices[2].geometryVertex = GLKVector3Make(0, self.contentSize.height, 0);
+        _texturedVertices[3].geometryVertex = GLKVector3Make(self.contentSize.width, self.contentSize.height, 0);
         
-        newQuad.bl.textureVertex = CGPointMake(0, 0);
-        newQuad.br.textureVertex = CGPointMake(1, 0);
-        newQuad.tl.textureVertex = CGPointMake(0, 1);
-        newQuad.tr.textureVertex = CGPointMake(1, 1);
-        self.quad = newQuad;
+        _texturedVertices[0].textureVertex = GLKVector3Make(0, 0, 0);
+        _texturedVertices[1].textureVertex = GLKVector3Make(1, 0, 0);
+        _texturedVertices[2].textureVertex = GLKVector3Make(0, 1, 0);
+        _texturedVertices[3].textureVertex = GLKVector3Make(1, 1, 0);
     }
     
     return self;
@@ -93,12 +86,6 @@ typedef struct {
     
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self.contentSize.width, self.contentSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
     
-//    UIImage *image = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
-//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-//    NSData * binaryImageData = UIImagePNGRepresentation(image);
-//    [binaryImageData writeToFile:[basePath stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
-    
     // clean up
     CGContextRelease(context);
     free(pixelBuffer);
@@ -114,19 +101,20 @@ typedef struct {
 }
 
 - (void)render
-{    
+{
     self.effect.texture2d0.name = self.textureName;
     self.effect.texture2d0.enabled = YES;
-    self.effect.transform.modelviewMatrix = self.modelMatrix;
+    GLKMatrix4 modelMatrix = self.modelMatrix;
+    self.effect.transform.modelviewMatrix = GLKMatrix4Multiply([self.delegate viewMatrix], modelMatrix);
     
     [self.effect prepareToDraw];
     
-    long offset = (long)&_quad;
+    long offset = (long)&_texturedVertices;
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
     
-    glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

@@ -10,10 +10,18 @@
 #import <GLKit/GLKit.h>
 
 
+@protocol SpriteDelegate
+
+- (GLKMatrix4)viewMatrix;
+
+@end
+
+
 @interface Sprite : NSObject
 
-@property (assign) GLKVector2 position;
-@property (assign) CGSize contentSize;
+@property (nonatomic, weak) id<SpriteDelegate> delegate;
+@property (nonatomic, assign) GLKVector2 position;
+@property (nonatomic, assign) CGSize contentSize;
 
 - (id)initWithView:(UIView*)view effect:(GLKBaseEffect *)effect;
 - (void)render;
