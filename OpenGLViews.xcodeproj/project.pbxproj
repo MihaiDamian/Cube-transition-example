@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB069863171C729D00C81011 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB069861171C729D00C81011 /* SecondViewController.m */; };
+		CB069864171C729D00C81011 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB069862171C729D00C81011 /* SecondViewController.xib */; };
 		CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0D01201713364F0016AA12 /* FirstViewController.m */; };
 		CB0D01231713364F0016AA12 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0D01211713364F0016AA12 /* FirstViewController.xib */; };
 		CB4A36A5170E04CE007BBEF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36A4170E04CE007BBEF9 /* UIKit.framework */; };
@@ -29,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB069860171C729D00C81011 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		CB069861171C729D00C81011 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		CB069862171C729D00C81011 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		CB0D011F1713364F0016AA12 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		CB0D01201713364F0016AA12 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		CB0D01211713364F0016AA12 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
@@ -82,6 +87,9 @@
 				CB0D011F1713364F0016AA12 /* FirstViewController.h */,
 				CB0D01201713364F0016AA12 /* FirstViewController.m */,
 				CB0D01211713364F0016AA12 /* FirstViewController.xib */,
+				CB069860171C729D00C81011 /* SecondViewController.h */,
+				CB069861171C729D00C81011 /* SecondViewController.m */,
+				CB069862171C729D00C81011 /* SecondViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 				CB4A36C1170E04CE007BBEF9 /* ViewController.xib in Resources */,
 				CB4A36E917102038007BBEF9 /* texture.png in Resources */,
 				CB0D01231713364F0016AA12 /* FirstViewController.xib in Resources */,
+				CB069864171C729D00C81011 /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +249,7 @@
 				CB4A36D0170E064E007BBEF9 /* AnimationViewController.m in Sources */,
 				CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */,
 				CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */,
+				CB069863171C729D00C81011 /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

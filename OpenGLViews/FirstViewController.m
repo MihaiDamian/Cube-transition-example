@@ -13,7 +13,7 @@
 
 - (void)viewDidLayoutSubviews
 {
-    [self.delegate controllerIsReadyForAnimation:self];
+    [self.delegate firstControllerIsReadyForAnimation:self];
 }
 
 @end

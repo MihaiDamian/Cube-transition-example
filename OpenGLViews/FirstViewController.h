@@ -14,7 +14,7 @@
 
 @protocol FirstViewControllerDelegate
 
-- (void)controllerIsReadyForAnimation:(FirstViewController*)controller;
+- (void)firstControllerIsReadyForAnimation:(FirstViewController*)controller;
 
 @end
 
