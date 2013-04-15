@@ -60,7 +60,8 @@ static GLfloat FOV = M_PI / 4;
     self.effect.transform.projectionMatrix = projectionMatrix;
 
     self.initialView.contentScaleFactor = contentScaleFactor;
-    self.sprite = [[Sprite alloc] initWithView:self.initialView effect:self.effect];
+    self.finalView.contentScaleFactor = contentScaleFactor;
+    self.sprite = [[Sprite alloc] initWithFirstView:self.initialView secondView:self.finalView effect:self.effect];
     self.sprite.position = GLKVector2Make(0, 0);
     self.sprite.delegate = self;
 }

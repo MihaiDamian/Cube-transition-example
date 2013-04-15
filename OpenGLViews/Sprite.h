@@ -21,9 +21,8 @@
 
 @property (nonatomic, weak) id<SpriteDelegate> delegate;
 @property (nonatomic, assign) GLKVector2 position;
-@property (nonatomic, assign) CGSize contentSize;
 
-- (id)initWithView:(UIView*)view effect:(GLKBaseEffect *)effect;
+- (id)initWithFirstView:(UIView*)firstView secondView:(UIView*)secondView effect:(GLKBaseEffect *)effect;
 - (void)render;
 - (void)update:(float)dt;
 
