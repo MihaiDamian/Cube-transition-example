@@ -13,13 +13,13 @@
 
 typedef struct {
     GLKVector3 geometryVertex;
-    GLKVector3 textureVertex;
+    GLKVector2 textureVertex;
 } TexturedVertex;
 
 
 @interface Sprite()
 {
-    TexturedVertex _texturedVertices[4];
+    TexturedVertex _texturedVertices[6];
 }
 
 @property (nonatomic, strong) GLKBaseEffect * effect;
@@ -47,14 +47,18 @@ typedef struct {
         [self prerenderFirstView:firstView secondView:secondView];
         
         _texturedVertices[0].geometryVertex = GLKVector3Make(0, 0, 0);
-        _texturedVertices[1].geometryVertex = GLKVector3Make(self.faceSize.width, 0, 0);
-        _texturedVertices[2].geometryVertex = GLKVector3Make(0, self.faceSize.height, 0);
+        _texturedVertices[1].geometryVertex = GLKVector3Make(0, self.faceSize.height, 0);
+        _texturedVertices[2].geometryVertex = GLKVector3Make(self.faceSize.width, 0, 0);
         _texturedVertices[3].geometryVertex = GLKVector3Make(self.faceSize.width, self.faceSize.height, 0);
+        _texturedVertices[4].geometryVertex = GLKVector3Make(self.faceSize.width, 0, -self.faceSize.width);
+        _texturedVertices[5].geometryVertex = GLKVector3Make(self.faceSize.width, self.faceSize.height, -self.faceSize.width);
         
-        _texturedVertices[0].textureVertex = GLKVector3Make(0, 0, 0);
-        _texturedVertices[1].textureVertex = GLKVector3Make(0.5, 0, 0);
-        _texturedVertices[2].textureVertex = GLKVector3Make(0, 1, 0);
-        _texturedVertices[3].textureVertex = GLKVector3Make(0.5, 1, 0);
+        _texturedVertices[0].textureVertex = GLKVector2Make(0, 0);
+        _texturedVertices[1].textureVertex = GLKVector2Make(0, 1);
+        _texturedVertices[2].textureVertex = GLKVector2Make(0.5, 0);
+        _texturedVertices[3].textureVertex = GLKVector2Make(0.5, 1);
+        _texturedVertices[4].textureVertex = GLKVector2Make(1, 0);
+        _texturedVertices[5].textureVertex = GLKVector2Make(1, 1);
     }
     
     return self;
@@ -141,12 +145,12 @@ typedef struct {
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, geometryVertex)));
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 6);
 }
 
 - (void)update:(float)dt
 {    
-//    self.rotation += 0.1;
+//    self.rotation -= 0.1;
 }
 
 @end

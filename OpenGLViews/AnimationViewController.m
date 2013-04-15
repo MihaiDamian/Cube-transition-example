@@ -51,12 +51,13 @@ static GLfloat FOV = M_PI / 4;
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
+    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     [EAGLContext setCurrentContext:self.context];
     
     CGFloat contentScaleFactor = view.contentScaleFactor;
 
     self.effect = [GLKBaseEffect new];
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(FOV, view.frame.size.width / view.frame.size.height, -1, 100);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(FOV, view.frame.size.width / view.frame.size.height, 1, 5000);
     self.effect.transform.projectionMatrix = projectionMatrix;
 
     self.initialView.contentScaleFactor = contentScaleFactor;
@@ -75,9 +76,10 @@ static GLfloat FOV = M_PI / 4;
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
     glClearColor(1, 0, 1, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
     
     [self.sprite render];
 }
