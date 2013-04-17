@@ -23,7 +23,6 @@ typedef struct {
 }
 
 @property (nonatomic, strong) GLKBaseEffect * effect;
-@property (nonatomic, assign) float rotation;
 @property (nonatomic, assign) GLuint textureName;
 @property (nonatomic, assign) CGSize faceSize;
 
@@ -146,11 +145,6 @@ typedef struct {
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(TexturedVertex), (void *) (offset + offsetof(TexturedVertex, textureVertex)));
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 6);
-}
-
-- (void)update:(float)dt
-{    
-//    self.rotation -= 0.1;
 }
 
 @end

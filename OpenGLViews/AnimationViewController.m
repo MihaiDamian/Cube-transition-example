@@ -11,6 +11,7 @@
 
 
 static GLfloat FOV = M_PI / 4;
+static GLfloat TargetFPS = 60;
 
 
 @interface AnimationViewController () <SpriteDelegate>
@@ -22,18 +23,25 @@ static GLfloat FOV = M_PI / 4;
 @property (nonatomic, strong) UIView *initialView;
 @property (nonatomic, strong) UIView *finalView;
 
+@property (nonatomic, assign) AnimationDirection direction;
+
 @end
 
 
 @implementation AnimationViewController
 
-- (id)initWithInitialView:(UIView*)initialView finalView:(UIView*)finalView
+- (id)initWithInitialView:(UIView*)initialView finalView:(UIView*)finalView animationDirection:(AnimationDirection)direction
 {
     self = [super initWithNibName:nil bundle:nil];
     if(self != nil)
     {
-        self.initialView = initialView;
-        self.finalView = finalView;
+        _initialView = initialView;
+        _finalView = finalView;
+        
+        // TODO: resolve this
+        _finalView.frame = self.initialView.frame;
+        
+        _direction = direction;
     }
     
     return self;
@@ -49,6 +57,8 @@ static GLfloat FOV = M_PI / 4;
         NSLog(@"Failed to create ES context");
     }
     
+    self.preferredFramesPerSecond = TargetFPS;
+    
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
@@ -62,14 +72,40 @@ static GLfloat FOV = M_PI / 4;
 
     self.initialView.contentScaleFactor = contentScaleFactor;
     self.finalView.contentScaleFactor = contentScaleFactor;
-    self.sprite = [[Sprite alloc] initWithFirstView:self.initialView secondView:self.finalView effect:self.effect];
+    if(self.direction == AnimationDirectionForward)
+    {
+        self.sprite = [[Sprite alloc] initWithFirstView:self.initialView secondView:self.finalView effect:self.effect];
+    }
+    else if(self.direction == AnimationDirectionBack)
+    {
+        self.sprite = [[Sprite alloc] initWithFirstView:self.finalView secondView:self.initialView effect:self.effect];
+    }
     self.sprite.position = GLKVector2Make(0, 0);
     self.sprite.delegate = self;
+    if(self.direction == AnimationDirectionBack)
+    {
+        self.sprite.rotation = -M_PI / 2;
+    }
 }
 
 - (void)update
 {
-    [self.sprite update:self.timeSinceLastUpdate];
+    if(self.direction == AnimationDirectionForward)
+    {
+        self.sprite.rotation -= 0.1;
+        if(self.sprite.rotation <= -M_PI / 2)
+        {
+            [self.animationDelegate didFinishAnimation];
+        }
+    }
+    else if(self.direction == AnimationDirectionBack)
+    {
+        self.sprite.rotation += 0.1;
+        if(self.sprite.rotation >= 0)
+        {
+            [self.animationDelegate didFinishAnimation];
+        }
+    }
 }
 
 #pragma mark GLKViewDelegate

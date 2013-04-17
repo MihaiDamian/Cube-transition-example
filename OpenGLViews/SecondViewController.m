@@ -13,7 +13,12 @@
 
 - (void)viewDidLayoutSubviews
 {
-    [self.delegate secondControllerIsReadyForAnimation:self];
+    [self.animationDelegate viewControllerIsReadyForAnimation:self];
+}
+
+- (IBAction)goBack:(id)sender
+{
+    [self.navigationViewController popViewController];
 }
 
 @end

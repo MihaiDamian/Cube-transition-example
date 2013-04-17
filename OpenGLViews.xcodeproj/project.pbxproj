@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB069863171C729D00C81011 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB069861171C729D00C81011 /* SecondViewController.m */; };
 		CB069864171C729D00C81011 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB069862171C729D00C81011 /* SecondViewController.xib */; };
+		CB069869171DD1ED00C81011 /* NavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB069865171DD1EC00C81011 /* NavigationViewController.xib */; };
 		CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0D01201713364F0016AA12 /* FirstViewController.m */; };
 		CB0D01231713364F0016AA12 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB0D01211713364F0016AA12 /* FirstViewController.xib */; };
 		CB4A36A5170E04CE007BBEF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36A4170E04CE007BBEF9 /* UIKit.framework */; };
@@ -20,20 +21,20 @@
 		CB4A36B7170E04CE007BBEF9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36B6170E04CE007BBEF9 /* Default.png */; };
 		CB4A36B9170E04CE007BBEF9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36B8170E04CE007BBEF9 /* Default@2x.png */; };
 		CB4A36BB170E04CE007BBEF9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36BA170E04CE007BBEF9 /* Default-568h@2x.png */; };
-		CB4A36BE170E04CE007BBEF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36BD170E04CE007BBEF9 /* ViewController.m */; };
-		CB4A36C1170E04CE007BBEF9 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36BF170E04CE007BBEF9 /* ViewController.xib */; };
 		CB4A36D0170E064E007BBEF9 /* AnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */; };
 		CB4A36D8170E084F007BBEF9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36D7170E084F007BBEF9 /* QuartzCore.framework */; };
 		CB4A36E0170E116F007BBEF9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36DF170E116F007BBEF9 /* OpenGLES.framework */; };
 		CB4A36E917102038007BBEF9 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36E817102038007BBEF9 /* texture.png */; };
 		CB4A36F017109810007BBEF9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36EF17109810007BBEF9 /* GLKit.framework */; };
 		CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36F21711EF18007BBEF9 /* Sprite.m */; };
+		CB681781171DDB56007B4BA2 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB681780171DDB56007B4BA2 /* NavigationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CB069860171C729D00C81011 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		CB069861171C729D00C81011 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		CB069862171C729D00C81011 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		CB069866171DD1EC00C81011 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NavigationViewController.xib; sourceTree = "<group>"; };
 		CB0D011F1713364F0016AA12 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		CB0D01201713364F0016AA12 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		CB0D01211713364F0016AA12 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
@@ -51,9 +52,6 @@
 		CB4A36B6170E04CE007BBEF9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CB4A36B8170E04CE007BBEF9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CB4A36BA170E04CE007BBEF9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		CB4A36BC170E04CE007BBEF9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CB4A36BD170E04CE007BBEF9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CB4A36C0170E04CE007BBEF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		CB4A36CD170E064E007BBEF9 /* AnimationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationViewController.h; sourceTree = "<group>"; };
 		CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationViewController.m; sourceTree = "<group>"; };
 		CB4A36D7170E084F007BBEF9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -62,6 +60,8 @@
 		CB4A36EF17109810007BBEF9 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		CB4A36F11711EF18007BBEF9 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		CB4A36F21711EF18007BBEF9 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
+		CB68177F171DDB56007B4BA2 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		CB681780171DDB56007B4BA2 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,12 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				CB0D011E171336270016AA12 /* ViewControllers */,
-				CB4A36C7170E05A4007BBEF9 /* AnimationController */,
+				CB4A36C7170E05A4007BBEF9 /* NavigationViewController */,
 				CB4A36B3170E04CE007BBEF9 /* AppDelegate.h */,
 				CB4A36B4170E04CE007BBEF9 /* AppDelegate.m */,
-				CB4A36BC170E04CE007BBEF9 /* ViewController.h */,
-				CB4A36BD170E04CE007BBEF9 /* ViewController.m */,
-				CB4A36BF170E04CE007BBEF9 /* ViewController.xib */,
 				CB4A36AB170E04CE007BBEF9 /* Supporting Files */,
 			);
 			path = OpenGLViews;
@@ -154,14 +151,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CB4A36C7170E05A4007BBEF9 /* AnimationController */ = {
+		CB4A36C7170E05A4007BBEF9 /* NavigationViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CB68177F171DDB56007B4BA2 /* NavigationViewController.h */,
+				CB681780171DDB56007B4BA2 /* NavigationViewController.m */,
+				CB069865171DD1EC00C81011 /* NavigationViewController.xib */,
 				CB4A36CD170E064E007BBEF9 /* AnimationViewController.h */,
 				CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */,
 				CB4A36D3170E0749007BBEF9 /* OpenGL */,
 			);
-			name = AnimationController;
+			name = NavigationViewController;
 			sourceTree = "<group>";
 		};
 		CB4A36D3170E0749007BBEF9 /* OpenGL */ = {
@@ -229,10 +229,10 @@
 				CB4A36B7170E04CE007BBEF9 /* Default.png in Resources */,
 				CB4A36B9170E04CE007BBEF9 /* Default@2x.png in Resources */,
 				CB4A36BB170E04CE007BBEF9 /* Default-568h@2x.png in Resources */,
-				CB4A36C1170E04CE007BBEF9 /* ViewController.xib in Resources */,
 				CB4A36E917102038007BBEF9 /* texture.png in Resources */,
 				CB0D01231713364F0016AA12 /* FirstViewController.xib in Resources */,
 				CB069864171C729D00C81011 /* SecondViewController.xib in Resources */,
+				CB069869171DD1ED00C81011 /* NavigationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,31 +245,31 @@
 			files = (
 				CB4A36B1170E04CE007BBEF9 /* main.m in Sources */,
 				CB4A36B5170E04CE007BBEF9 /* AppDelegate.m in Sources */,
-				CB4A36BE170E04CE007BBEF9 /* ViewController.m in Sources */,
 				CB4A36D0170E064E007BBEF9 /* AnimationViewController.m in Sources */,
 				CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */,
 				CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */,
 				CB069863171C729D00C81011 /* SecondViewController.m in Sources */,
+				CB681781171DDB56007B4BA2 /* NavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		CB069865171DD1EC00C81011 /* NavigationViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB069866171DD1EC00C81011 /* en */,
+			);
+			name = NavigationViewController.xib;
+			sourceTree = "<group>";
+		};
 		CB4A36AD170E04CE007BBEF9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CB4A36AE170E04CE007BBEF9 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CB4A36BF170E04CE007BBEF9 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB4A36C0170E04CE007BBEF9 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -7,13 +7,20 @@
 //
 
 #import "FirstViewController.h"
+#import "SecondViewController.h"
 
 
 @implementation FirstViewController
 
 - (void)viewDidLayoutSubviews
 {
-    [self.delegate firstControllerIsReadyForAnimation:self];
+    [self.animationDelegate viewControllerIsReadyForAnimation:self];
+}
+
+- (IBAction)goForward:(id)sender
+{
+    SecondViewController *controller = [[SecondViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationViewController pushViewController:controller];
 }
 
 @end

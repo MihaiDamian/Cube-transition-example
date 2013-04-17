@@ -8,19 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-
-@class SecondViewController;
-
-
-@protocol SecondViewControllerDelegate
-
-- (void)secondControllerIsReadyForAnimation:(SecondViewController*)controller;
-
-@end
+#import "NavigationViewController.h"
 
 
-@interface SecondViewController : UIViewController
-
-@property (nonatomic, weak) id<SecondViewControllerDelegate> delegate;
+@interface SecondViewController : AnimatableViewController
 
 @end
