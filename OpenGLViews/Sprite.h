@@ -20,7 +20,6 @@
 @interface Sprite : NSObject
 
 @property (nonatomic, weak) id<SpriteDelegate> delegate;
-@property (nonatomic, assign) GLKVector2 position;
 @property (nonatomic, assign) GLfloat rotation;
 
 - (id)initWithFirstView:(UIView*)firstView secondView:(UIView*)secondView effect:(GLKBaseEffect *)effect;

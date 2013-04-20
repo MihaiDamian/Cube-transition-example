@@ -45,12 +45,12 @@ typedef struct {
         
         [self prerenderFirstView:firstView secondView:secondView];
         
-        _texturedVertices[0].geometryVertex = GLKVector3Make(0, 0, 0);
-        _texturedVertices[1].geometryVertex = GLKVector3Make(0, self.faceSize.height, 0);
-        _texturedVertices[2].geometryVertex = GLKVector3Make(self.faceSize.width, 0, 0);
-        _texturedVertices[3].geometryVertex = GLKVector3Make(self.faceSize.width, self.faceSize.height, 0);
-        _texturedVertices[4].geometryVertex = GLKVector3Make(self.faceSize.width, 0, -self.faceSize.width);
-        _texturedVertices[5].geometryVertex = GLKVector3Make(self.faceSize.width, self.faceSize.height, -self.faceSize.width);
+        _texturedVertices[0].geometryVertex = GLKVector3Make(-self.faceSize.width / 2, -self.faceSize.height / 2, self.faceSize.width / 2);
+        _texturedVertices[1].geometryVertex = GLKVector3Make(-self.faceSize.width / 2, self.faceSize.height / 2, self.faceSize.width / 2);
+        _texturedVertices[2].geometryVertex = GLKVector3Make(self.faceSize.width / 2, -self.faceSize.height / 2, self.faceSize.width / 2);
+        _texturedVertices[3].geometryVertex = GLKVector3Make(self.faceSize.width / 2, self.faceSize.height / 2, self.faceSize.width / 2);
+        _texturedVertices[4].geometryVertex = GLKVector3Make(self.faceSize.width / 2, -self.faceSize.height / 2, -self.faceSize.width / 2);
+        _texturedVertices[5].geometryVertex = GLKVector3Make(self.faceSize.width /2, self.faceSize.height / 2, -self.faceSize.width / 2);
         
         _texturedVertices[0].textureVertex = GLKVector2Make(0, 0);
         _texturedVertices[1].textureVertex = GLKVector2Make(0, 1);
@@ -121,8 +121,7 @@ typedef struct {
 - (GLKMatrix4)modelMatrix
 {    
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
-    modelMatrix = GLKMatrix4Translate(modelMatrix, -self.faceSize.width / 2, -self.faceSize.height / 2, 0);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, 0, 0, -self.faceSize.width / 2);
     modelMatrix = GLKMatrix4RotateY(modelMatrix, self.rotation);
     return modelMatrix;
 }

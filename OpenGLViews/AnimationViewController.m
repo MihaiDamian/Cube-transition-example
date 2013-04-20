@@ -80,7 +80,6 @@ static GLfloat TargetFPS = 60;
     {
         self.sprite = [[Sprite alloc] initWithFirstView:self.finalView secondView:self.initialView effect:self.effect];
     }
-    self.sprite.position = GLKVector2Make(0, 0);
     self.sprite.delegate = self;
     if(self.direction == AnimationDirectionBack)
     {
@@ -92,7 +91,7 @@ static GLfloat TargetFPS = 60;
 {
     if(self.direction == AnimationDirectionForward)
     {
-        self.sprite.rotation -= 0.1;
+        self.sprite.rotation -= 0.05;
         if(self.sprite.rotation <= -M_PI / 2)
         {
             [self.animationDelegate didFinishAnimation];
@@ -100,7 +99,7 @@ static GLfloat TargetFPS = 60;
     }
     else if(self.direction == AnimationDirectionBack)
     {
-        self.sprite.rotation += 0.1;
+        self.sprite.rotation += 0.05;
         if(self.sprite.rotation >= 0)
         {
             [self.animationDelegate didFinishAnimation];
