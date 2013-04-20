@@ -42,6 +42,8 @@ static GLfloat TargetFPS = 60;
         _finalView.frame = self.initialView.frame;
         
         _direction = direction;
+        
+        _animationDuration = 0.3;
     }
     
     return self;
@@ -89,9 +91,12 @@ static GLfloat TargetFPS = 60;
 
 - (void)update
 {
+    GLfloat rotationSpeed = (M_PI / 2) / self.animationDuration;
+    GLfloat rotation = rotationSpeed * self.timeSinceLastUpdate;
+    
     if(self.direction == AnimationDirectionForward)
     {
-        self.sprite.rotation -= 0.05;
+        self.sprite.rotation -= rotation;
         if(self.sprite.rotation <= -M_PI / 2)
         {
             [self.animationDelegate didFinishAnimation];
@@ -99,7 +104,7 @@ static GLfloat TargetFPS = 60;
     }
     else if(self.direction == AnimationDirectionBack)
     {
-        self.sprite.rotation += 0.05;
+        self.sprite.rotation += rotation;
         if(self.sprite.rotation >= 0)
         {
             [self.animationDelegate didFinishAnimation];

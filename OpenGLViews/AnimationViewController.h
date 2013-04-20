@@ -27,6 +27,8 @@ typedef NS_ENUM(NSUInteger, AnimationDirection)
 @interface AnimationViewController : GLKViewController
 
 @property (nonatomic, weak) id<AnimationViewControllerDelegate> animationDelegate;
+// Default is 0.3 seconds
+@property (nonatomic, assign) NSTimeInterval animationDuration;
 
 // AnimationViewController may decide to prerender the view parameters at any point after they are passed in.
 // Therefore the caller needs to make sure that all necessary resized on these views have been carried out before calling this method.
