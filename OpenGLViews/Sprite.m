@@ -63,6 +63,11 @@ typedef struct {
     return self;
 }
 
+- (void)dealloc
+{
+    glDeleteTextures(1, &_textureName);
+}
+
 - (void)prerenderFirstView:(UIView*)firstView secondView:(UIView*)secondView
 {
     CGFloat contentScaleFactor = firstView.contentScaleFactor;
@@ -105,8 +110,7 @@ typedef struct {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, atlasSize.width, atlasSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
-    
-    
+
 //    UIImage *image = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
 //    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;

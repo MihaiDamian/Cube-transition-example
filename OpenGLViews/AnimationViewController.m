@@ -16,7 +16,6 @@ static GLfloat TargetFPS = 60;
 
 @interface AnimationViewController () <SpriteDelegate>
 
-@property (nonatomic, strong) EAGLContext *context;
 @property (nonatomic, strong) Sprite *sprite;
 @property (nonatomic, strong) GLKBaseEffect *effect;
 
@@ -53,18 +52,24 @@ static GLfloat TargetFPS = 60;
 {
     [super viewDidLoad];
     
-    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    if(!self.context)
+    if([EAGLContext currentContext] == nil)
     {
-        NSLog(@"Failed to create ES context");
+        EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        if(context == nil)
+        {
+            NSLog(@"Failed to create ES context");
+        }
+        if(![EAGLContext setCurrentContext:context])
+        {
+            NSLog(@"Could not set EAGL Context");
+        }
     }
     
     self.preferredFramesPerSecond = TargetFPS;
     
     GLKView *view = (GLKView *)self.view;
-    view.context = self.context;
+    view.context = [EAGLContext currentContext];
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    [EAGLContext setCurrentContext:self.context];
     
     CGFloat contentScaleFactor = view.contentScaleFactor;
 
