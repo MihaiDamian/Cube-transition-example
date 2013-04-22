@@ -42,7 +42,7 @@ static GLfloat TargetFPS = 60;
         
         _direction = direction;
         
-        _animationDuration = 0.3;
+        _animationDuration = 1;
     }
     
     return self;
@@ -76,6 +76,14 @@ static GLfloat TargetFPS = 60;
     self.effect = [GLKBaseEffect new];
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(FOV, view.frame.size.width / view.frame.size.height, 1, 5000);
     self.effect.transform.projectionMatrix = projectionMatrix;
+    // No need for specular reflection
+    self.effect.material.ambientColor = GLKVector4Make(0.1, 0.1, 0.1, 1);
+    self.effect.material.diffuseColor = GLKVector4Make(1, 1, 1, 1);
+    self.effect.light0.ambientColor = GLKVector4Make(1, 1, 1, 1);
+    self.effect.light0.diffuseColor = GLKVector4Make(1, 1, 1, 1);
+    // Define a directional light shining from the user's position down on the object
+    self.effect.light0.position = GLKVector4Make(0, 0, 1, 0);
+    self.effect.light0.enabled = GL_TRUE;
 
     self.initialView.contentScaleFactor = contentScaleFactor;
     self.finalView.contentScaleFactor = contentScaleFactor;
@@ -120,7 +128,7 @@ static GLfloat TargetFPS = 60;
 #pragma mark GLKViewDelegate
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(1, 0, 1, 1);
+    glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
