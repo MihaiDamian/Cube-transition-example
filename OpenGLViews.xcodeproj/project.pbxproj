@@ -28,6 +28,10 @@
 		CB4A36F017109810007BBEF9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36EF17109810007BBEF9 /* GLKit.framework */; };
 		CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36F21711EF18007BBEF9 /* Sprite.m */; };
 		CB681781171DDB56007B4BA2 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB681780171DDB56007B4BA2 /* NavigationViewController.m */; };
+		CBF75C051727091500C1C2CF /* leftArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C031727091500C1C2CF /* leftArrows.png */; };
+		CBF75C061727091500C1C2CF /* leftArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C041727091500C1C2CF /* leftArrows@2x.png */; };
+		CBF75C0917270A9D00C1C2CF /* rightArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C0717270A9D00C1C2CF /* rightArrows.png */; };
+		CBF75C0A17270A9D00C1C2CF /* rightArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C0817270A9D00C1C2CF /* rightArrows@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		CB4A36F21711EF18007BBEF9 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
 		CB68177F171DDB56007B4BA2 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		CB681780171DDB56007B4BA2 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+		CBF75C031727091500C1C2CF /* leftArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrows.png; sourceTree = "<group>"; };
+		CBF75C041727091500C1C2CF /* leftArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrows@2x.png"; sourceTree = "<group>"; };
+		CBF75C0717270A9D00C1C2CF /* rightArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrows.png; sourceTree = "<group>"; };
+		CBF75C0817270A9D00C1C2CF /* rightArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrows@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,7 @@
 				CB4A36B3170E04CE007BBEF9 /* AppDelegate.h */,
 				CB4A36B4170E04CE007BBEF9 /* AppDelegate.m */,
 				CB4A36AB170E04CE007BBEF9 /* Supporting Files */,
+				CBF75BF81725C64400C1C2CF /* resources */,
 			);
 			path = OpenGLViews;
 			sourceTree = "<group>";
@@ -172,6 +181,18 @@
 				CB0D012417133BA10016AA12 /* glUtil.h */,
 			);
 			name = OpenGL;
+			sourceTree = "<group>";
+		};
+		CBF75BF81725C64400C1C2CF /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				CBF75C0717270A9D00C1C2CF /* rightArrows.png */,
+				CBF75C0817270A9D00C1C2CF /* rightArrows@2x.png */,
+				CBF75C031727091500C1C2CF /* leftArrows.png */,
+				CBF75C041727091500C1C2CF /* leftArrows@2x.png */,
+			);
+			name = resources;
+			path = ../resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +254,10 @@
 				CB0D01231713364F0016AA12 /* FirstViewController.xib in Resources */,
 				CB069864171C729D00C81011 /* SecondViewController.xib in Resources */,
 				CB069869171DD1ED00C81011 /* NavigationViewController.xib in Resources */,
+				CBF75C051727091500C1C2CF /* leftArrows.png in Resources */,
+				CBF75C061727091500C1C2CF /* leftArrows@2x.png in Resources */,
+				CBF75C0917270A9D00C1C2CF /* rightArrows.png in Resources */,
+				CBF75C0A17270A9D00C1C2CF /* rightArrows@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
