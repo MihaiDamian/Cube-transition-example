@@ -145,6 +145,8 @@ typedef struct {
     
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, atlasSize.width, atlasSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
 
+    // Uncomment to see the texture exported to a file
+    
 //    UIImage *image = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
 //    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;

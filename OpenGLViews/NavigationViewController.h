@@ -9,32 +9,12 @@
 #import <UIKit/UIKit.h>
 
 
-@class AnimatableViewController;
-@class NavigationViewController;
-
-
-@protocol AnimatableViewControllerDelegate
-
-// Call this after viewDidLayoutSubviews was called on AnimatableViewController
-- (void)viewControllerIsReadyForAnimation:(AnimatableViewController*)controller;
-
-@end
-
-
-@interface AnimatableViewController : UIViewController
-
-@property (nonatomic, weak) NavigationViewController *navigationViewController;
-@property (nonatomic, weak) id<AnimatableViewControllerDelegate> animationDelegate;
-
-@end
-
-
 // TODO: find a better name
 @interface NavigationViewController : UIViewController
 
-- (id)initWithInitialViewController:(AnimatableViewController*)controller;
+- (id)initWithInitialViewController:(UIViewController*)controller;
 
-- (void)pushViewController:(AnimatableViewController*)controller;
+- (void)pushViewController:(UIViewController*)controller;
 - (void)popViewController;
 
 @end

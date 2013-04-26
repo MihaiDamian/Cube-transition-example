@@ -7,19 +7,10 @@
 //
 
 #import "SecondViewController.h"
+#import "NavigationViewController.h"
 
 
 @implementation SecondViewController
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [self.animationDelegate viewControllerIsReadyForAnimation:self];
-}
 
 - (IBAction)goBack:(id)sender
 {

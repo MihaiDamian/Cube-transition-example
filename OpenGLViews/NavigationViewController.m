@@ -10,11 +10,6 @@
 #import "AnimationViewController.h"
 
 
-@implementation AnimatableViewController
-
-@end
-
-
 @interface NavigationViewController () <AnimationViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
@@ -25,13 +20,12 @@
 
 @implementation NavigationViewController
 
-- (id)initWithInitialViewController:(AnimatableViewController*)controller
+- (id)initWithInitialViewController:(UIViewController*)controller
 {
     self = [super initWithNibName:nil bundle:nil];
     if(self != nil)
     {
         _viewControllers = [NSMutableArray arrayWithObject:controller];
-        controller.navigationViewController = self;
     }
     
     return self;
@@ -68,10 +62,9 @@
 }
 
 #pragma mark Stack operations
-- (void)pushViewController:(AnimatableViewController*)toViewController
+- (void)pushViewController:(UIViewController*)toViewController
 {
-    toViewController.navigationViewController = self;
-    AnimatableViewController *fromViewController = [self.viewControllers lastObject];
+    UIViewController *fromViewController = [self.viewControllers lastObject];
     [self.viewControllers addObject:toViewController];
     
     [self animateFromViewController:fromViewController toViewController:toViewController direction:AnimationDirectionForward];
@@ -85,8 +78,8 @@
         return;
     }
     
-    AnimatableViewController *fromViewController = [self.viewControllers lastObject];
-    AnimatableViewController *toViewController = [self.viewControllers objectAtIndex:[self.viewControllers count] - 2];
+    UIViewController *fromViewController = [self.viewControllers lastObject];
+    UIViewController *toViewController = [self.viewControllers objectAtIndex:[self.viewControllers count] - 2];
     
     [self animateFromViewController:fromViewController toViewController:toViewController direction:AnimationDirectionBack];
     

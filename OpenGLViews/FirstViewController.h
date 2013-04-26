@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "NavigationViewController.h"
+
+@class NavigationViewController;
 
 
-@interface FirstViewController : AnimatableViewController
+@interface FirstViewController : UIViewController
+
+@property (nonatomic, weak) NavigationViewController *navigationViewController;
 
 @end
