@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) AnimationViewController *animationController;
+@property (nonatomic, assign) BOOL animationInProgress;
 
 @end
 
@@ -40,6 +41,12 @@
 
 - (void)animateFromViewController:(UIViewController*)fromViewController toViewController:(UIViewController*)toViewController direction:(AnimationDirection)direction
 {
+    // Starting an animation while the previous one has not finished can have bad consequences. For simplicity there is no support for batch push/pop operations
+    // in this tutorial. If you need to implement that feature do what UINavigationController does: add an animated parameter to push/pop to allow skipping animations
+    // and specify that only the last operation in the batch may be animated.
+    NSAssert(self.animationInProgress == NO, @"An animation is already in progress");
+    self.animationInProgress = YES;
+    
     [self addChildViewController:toViewController];
     toViewController.view.frame = self.view.bounds;
     [fromViewController willMoveToParentViewController:nil];
@@ -109,6 +116,7 @@
 - (void)didFinishAnimation
 {
     [self dismissViewController:self.animationController];
+    self.animationInProgress = NO;
 }
 
 @end
