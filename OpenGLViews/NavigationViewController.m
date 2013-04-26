@@ -51,6 +51,9 @@
     
     __weak NavigationViewController *weakSelf = self;
     
+    // This method is used to ensure that toViewController has layed out it's view before animation.
+    // The duration parameter is 0 as we don't don't need to do any UIKit animations. Since AnimationViewController will be cover the entire screen for the
+    // duration of the animation we use the oportunity of discarding the fromViewController early, on the completion block.
     [self transitionFromViewController:fromViewController toViewController:toViewController duration:0 options:UIViewAnimationOptionTransitionNone animations:^{
         [weakSelf.view bringSubviewToFront:weakSelf.animationController.view];
         [weakSelf.animationController startAnimationWithInitialView:fromViewController.view finalView:toViewController.view direction:direction];
