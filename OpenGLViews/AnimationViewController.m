@@ -18,10 +18,6 @@ static GLfloat TargetFPS = 60;
 
 @property (nonatomic, strong) Sprite *sprite;
 @property (nonatomic, strong) GLKBaseEffect *effect;
-
-@property (nonatomic, strong) UIView *initialView;
-@property (nonatomic, strong) UIView *finalView;
-
 @property (nonatomic, assign) AnimationDirection direction;
 
 @end
@@ -29,28 +25,21 @@ static GLfloat TargetFPS = 60;
 
 @implementation AnimationViewController
 
-- (id)initWithInitialView:(UIView*)initialView finalView:(UIView*)finalView animationDirection:(AnimationDirection)direction
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self != nil)
     {
-        _initialView = initialView;
-        _finalView = finalView;
-        
-        // TODO: resolve this
-        _finalView.frame = self.initialView.frame;
-        
-        _direction = direction;
-        
-        _animationDuration = 1;
+        _duration = 1;
+        self.preferredFramesPerSecond = TargetFPS;
     }
     
     return self;
 }
 
-- (void)viewDidLoad
+- (void)startAnimationWithInitialView:(UIView*)initialView finalView:(UIView*)finalView direction:(AnimationDirection)direction
 {
-    [super viewDidLoad];
+    self.direction = direction;
     
     if([EAGLContext currentContext] == nil)
     {
@@ -64,8 +53,6 @@ static GLfloat TargetFPS = 60;
             NSLog(@"Could not set EAGL Context");
         }
     }
-    
-    self.preferredFramesPerSecond = TargetFPS;
     
     GLKView *view = (GLKView *)self.view;
     view.context = [EAGLContext currentContext];
@@ -85,26 +72,28 @@ static GLfloat TargetFPS = 60;
     self.effect.light0.position = GLKVector4Make(0, 0, 1, 0);
     self.effect.light0.enabled = GL_TRUE;
 
-    self.initialView.contentScaleFactor = contentScaleFactor;
-    self.finalView.contentScaleFactor = contentScaleFactor;
+    initialView.contentScaleFactor = contentScaleFactor;
+    finalView.contentScaleFactor = contentScaleFactor;
     if(self.direction == AnimationDirectionForward)
     {
-        self.sprite = [[Sprite alloc] initWithFirstView:self.initialView secondView:self.finalView effect:self.effect];
+        self.sprite = [[Sprite alloc] initWithFirstView:initialView secondView:finalView effect:self.effect];
     }
     else if(self.direction == AnimationDirectionBack)
     {
-        self.sprite = [[Sprite alloc] initWithFirstView:self.finalView secondView:self.initialView effect:self.effect];
+        self.sprite = [[Sprite alloc] initWithFirstView:finalView secondView:initialView effect:self.effect];
     }
     self.sprite.delegate = self;
     if(self.direction == AnimationDirectionBack)
     {
         self.sprite.rotation = -M_PI / 2;
     }
+    
+    self.paused = NO;
 }
 
 - (void)update
 {
-    GLfloat rotationSpeed = (M_PI / 2) / self.animationDuration;
+    GLfloat rotationSpeed = (M_PI / 2) / self.duration;
     GLfloat rotation = rotationSpeed * self.timeSinceLastUpdate;
     
     if(self.direction == AnimationDirectionForward)
@@ -112,6 +101,7 @@ static GLfloat TargetFPS = 60;
         self.sprite.rotation -= rotation;
         if(self.sprite.rotation <= -M_PI / 2)
         {
+            self.paused = YES;
             [self.animationDelegate didFinishAnimation];
         }
     }
@@ -120,6 +110,7 @@ static GLfloat TargetFPS = 60;
         self.sprite.rotation += rotation;
         if(self.sprite.rotation >= 0)
         {
+            self.paused = YES;
             [self.animationDelegate didFinishAnimation];
         }
     }

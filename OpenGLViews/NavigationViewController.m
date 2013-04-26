@@ -17,8 +17,8 @@
 
 @interface NavigationViewController () <AnimationViewControllerDelegate>
 
-@property (nonatomic, weak) UIViewController *currentViewController;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
+@property (nonatomic, strong) AnimationViewController *animationController;
 
 @end
 
@@ -44,18 +44,37 @@
     [self presentViewController:[self.viewControllers lastObject]];
 }
 
-- (void)pushViewController:(AnimatableViewController*)controller
+- (void)animateFromViewController:(UIViewController*)fromViewController toViewController:(UIViewController*)toViewController direction:(AnimationDirection)direction
 {
-    controller.navigationViewController = self;
+    [self addChildViewController:toViewController];
+    toViewController.view.frame = self.view.bounds;
+    [fromViewController willMoveToParentViewController:nil];
     
-    AnimatableViewController *initialViewController = [self.viewControllers lastObject];
-    AnimationViewController *animation = [[AnimationViewController alloc] initWithInitialView:initialViewController.view
-                                                                                    finalView:controller.view
-                                                                           animationDirection:AnimationDirectionForward];
-    animation.animationDelegate = self;
-    [self presentViewController:animation];
+    self.animationController = [[AnimationViewController alloc] initWithNibName:nil bundle:nil];
+    self.animationController.view.frame = self.view.bounds;
+    self.animationController.animationDelegate = self;
+    [self presentViewController:self.animationController];
     
-    [self.viewControllers addObject:controller];
+    __weak NavigationViewController *weakSelf = self;
+    
+    [self transitionFromViewController:fromViewController toViewController:toViewController duration:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        [weakSelf.view bringSubviewToFront:weakSelf.animationController.view];
+        [weakSelf.animationController startAnimationWithInitialView:fromViewController.view finalView:toViewController.view direction:direction];
+    } completion:^(BOOL finished) {
+        [fromViewController willMoveToParentViewController:nil];
+        [fromViewController removeFromParentViewController];
+        [toViewController didMoveToParentViewController:self];
+    }];
+}
+
+#pragma mark Stack operations
+- (void)pushViewController:(AnimatableViewController*)toViewController
+{
+    toViewController.navigationViewController = self;
+    AnimatableViewController *fromViewController = [self.viewControllers lastObject];
+    [self.viewControllers addObject:toViewController];
+    
+    [self animateFromViewController:fromViewController toViewController:toViewController direction:AnimationDirectionForward];
 }
 
 - (void)popViewController
@@ -66,13 +85,10 @@
         return;
     }
     
-    AnimatableViewController *initialViewController = [self.viewControllers lastObject];
-    AnimatableViewController *finalViewController = [self.viewControllers objectAtIndex:[self.viewControllers count] - 2];
-    AnimationViewController *animation = [[AnimationViewController alloc] initWithInitialView:initialViewController.view
-                                                                                    finalView:finalViewController.view
-                                                                           animationDirection:AnimationDirectionBack];
-    animation.animationDelegate = self;
-    [self presentViewController:animation];
+    AnimatableViewController *fromViewController = [self.viewControllers lastObject];
+    AnimatableViewController *toViewController = [self.viewControllers objectAtIndex:[self.viewControllers count] - 2];
+    
+    [self animateFromViewController:fromViewController toViewController:toViewController direction:AnimationDirectionBack];
     
     [self.viewControllers removeLastObject];
 }
@@ -80,29 +96,23 @@
 #pragma mark ViewController container
 - (void)presentViewController:(UIViewController*)controller
 {
-    [self dismissCurrentViewController];
-    
     [self addChildViewController:controller];
     controller.view.frame = self.view.bounds;
     [self.view addSubview:controller.view];
     [controller didMoveToParentViewController:self];
-    
-    self.currentViewController = controller;
 }
 
-- (void)dismissCurrentViewController
+- (void)dismissViewController:(UIViewController*)controller
 {
-    [self.currentViewController willMoveToParentViewController:nil];
-    [self.currentViewController.view removeFromSuperview];
-    [self.currentViewController removeFromParentViewController];
-    self.currentViewController = nil;
+    [controller willMoveToParentViewController:nil];
+    [controller.view removeFromSuperview];
+    [controller removeFromParentViewController];
 }
 
 #pragma mark AnimationViewControllerDelegate
 - (void)didFinishAnimation
 {
-    // Remove the animation and present the view controller on top of the stack
-    [self presentViewController:[self.viewControllers lastObject]];
+    [self dismissViewController:self.animationController];
 }
 
 @end

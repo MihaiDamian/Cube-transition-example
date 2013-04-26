@@ -28,11 +28,9 @@ typedef NS_ENUM(NSUInteger, AnimationDirection)
 
 @property (nonatomic, weak) id<AnimationViewControllerDelegate> animationDelegate;
 // Default is 0.3 seconds
-@property (nonatomic, assign) NSTimeInterval animationDuration;
+@property (nonatomic, assign) NSTimeInterval duration;
 
-// AnimationViewController may decide to prerender the view parameters at any point after they are passed in.
-// Therefore the caller needs to make sure that all necessary resized on these views have been carried out before calling this method.
-// For performance resons, future updates to the views may not be reflected in the animation
-- (id)initWithInitialView:(UIView*)initialView finalView:(UIView*)finalView animationDirection:(AnimationDirection)direction;
+// Do not start the animation more than once
+- (void)startAnimationWithInitialView:(UIView*)initialView finalView:(UIView*)finalView direction:(AnimationDirection)direction;
 
 @end
