@@ -8,6 +8,7 @@
 
 #import "AnimationViewController.h"
 #import "Sprite.h"
+#import "TextureAtlas.h"
 
 
 static GLfloat FOV = M_PI / 4;
@@ -17,7 +18,6 @@ static GLfloat TargetFPS = 60;
 @interface AnimationViewController () <SpriteDelegate>
 
 @property (nonatomic, strong) Sprite *sprite;
-@property (nonatomic, strong) GLKBaseEffect *effect;
 @property (nonatomic, assign) AnimationDirection direction;
 
 @end
@@ -60,27 +60,30 @@ static GLfloat TargetFPS = 60;
     
     CGFloat contentScaleFactor = view.contentScaleFactor;
 
-    self.effect = [GLKBaseEffect new];
+    GLKBaseEffect *effect = [GLKBaseEffect new];
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(FOV, view.frame.size.width / view.frame.size.height, 1, 5000);
-    self.effect.transform.projectionMatrix = projectionMatrix;
+    effect.transform.projectionMatrix = projectionMatrix;
     // No need for specular reflection
-    self.effect.material.ambientColor = GLKVector4Make(0.1, 0.1, 0.1, 1);
-    self.effect.material.diffuseColor = GLKVector4Make(1, 1, 1, 1);
-    self.effect.light0.ambientColor = GLKVector4Make(1, 1, 1, 1);
-    self.effect.light0.diffuseColor = GLKVector4Make(1, 1, 1, 1);
+    effect.material.ambientColor = GLKVector4Make(0.1, 0.1, 0.1, 1);
+    effect.material.diffuseColor = GLKVector4Make(1, 1, 1, 1);
+    effect.light0.ambientColor = GLKVector4Make(1, 1, 1, 1);
+    effect.light0.diffuseColor = GLKVector4Make(1, 1, 1, 1);
     // Define a directional light shining from the user's position down on the object
-    self.effect.light0.position = GLKVector4Make(0, 0, 1, 0);
-    self.effect.light0.enabled = GL_TRUE;
-
+    effect.light0.position = GLKVector4Make(0, 0, 1, 0);
+    effect.light0.enabled = GL_TRUE;
+    
     initialView.contentScaleFactor = contentScaleFactor;
     finalView.contentScaleFactor = contentScaleFactor;
+    
     if(self.direction == AnimationDirectionForward)
     {
-        self.sprite = [[Sprite alloc] initWithFirstView:initialView secondView:finalView effect:self.effect];
+        TextureAtlas *atlas = [[TextureAtlas alloc] initWithFirstView:initialView secondView:finalView];
+        self.sprite = [[Sprite alloc] initWithTextureAtlas:atlas effect:effect];
     }
     else if(self.direction == AnimationDirectionBack)
     {
-        self.sprite = [[Sprite alloc] initWithFirstView:finalView secondView:initialView effect:self.effect];
+        TextureAtlas *atlas = [[TextureAtlas alloc] initWithFirstView:finalView secondView:initialView];
+        self.sprite = [[Sprite alloc] initWithTextureAtlas:atlas effect:effect];
     }
     self.sprite.delegate = self;
     if(self.direction == AnimationDirectionBack)

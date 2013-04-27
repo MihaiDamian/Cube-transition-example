@@ -7,8 +7,7 @@
 //
 
 #import "Sprite.h"
-
-#import <QuartzCore/QuartzCore.h>
+#import "TextureAtlas.h"
 
 
 typedef struct {
@@ -24,27 +23,21 @@ typedef struct {
 }
 
 @property (nonatomic, strong) GLKBaseEffect * effect;
-@property (nonatomic, assign) GLuint textureName;
 @property (nonatomic, assign) CGSize faceSize;
+@property (nonatomic, strong) TextureAtlas *textureAtlas;
 
 @end
 
 
 @implementation Sprite
 
-- (id)initWithFirstView:(UIView*)firstView secondView:(UIView*)secondView effect:(GLKBaseEffect *)effect
+- (id)initWithTextureAtlas:(TextureAtlas*)atlas effect:(GLKBaseEffect *)effect
 {
     self = [super init];
     if(self != nil)
     {
-        NSAssert(firstView.contentScaleFactor == secondView.contentScaleFactor, @"For simplicity the views' content scale factors should be equal");
-        NSAssert(CGSizeEqualToSize(firstView.frame.size, secondView.frame.size), @"For simplicity the views' size should be eqaul");
-        
-        self.effect = effect;
-        CGFloat contentScaleFactor = firstView.contentScaleFactor;
-        self.faceSize = CGSizeMake(firstView.bounds.size.width * contentScaleFactor, firstView.bounds.size.height * contentScaleFactor);
-        
-        [self prerenderFirstView:firstView secondView:secondView];
+        _effect = effect;
+        _textureAtlas = atlas;
         
         // We'll use vertex triangles instead of triangle strips since we'll need to two surface normals for the vertices on the common edge of the two faces
         
@@ -97,65 +90,9 @@ typedef struct {
     return self;
 }
 
-- (void)dealloc
+- (CGSize)faceSize
 {
-    glDeleteTextures(1, &_textureName);
-}
-
-- (void)prerenderFirstView:(UIView*)firstView secondView:(UIView*)secondView
-{
-    CGFloat contentScaleFactor = firstView.contentScaleFactor;
-    
-    // We'll be drawing the views side by side so we reserve double the width
-    CGSize atlasSize = CGSizeMake(firstView.bounds.size.width * contentScaleFactor * 2, firstView.bounds.size.height * contentScaleFactor);
-    
-    // make space for an RGBA image of the view
-    GLubyte *pixelBuffer = (GLubyte *)malloc(4 * atlasSize.width * atlasSize.height);
-    
-    // create a suitable CoreGraphics context
-    CGColorSpaceRef colourSpace = CGColorSpaceCreateDeviceRGB();
-    CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big;
-    CGContextRef context = CGBitmapContextCreate(pixelBuffer, atlasSize.width, atlasSize.height, 8, 4 * atlasSize.width, colourSpace, bitmapInfo);
-    CGColorSpaceRelease(colourSpace);
-    
-    // Scale factor of the context and the view to be rendered need to match
-    CGContextScaleCTM(context, contentScaleFactor, contentScaleFactor);
-    
-    // Draw the first view to the context
-    [firstView.layer renderInContext:context];
-    
-    // Move the context's origin so the second view is drawn to the right of the first view
-    CGFloat xTranslation = firstView.bounds.size.width;
-    CGContextTranslateCTM(context, xTranslation, 0);
-    
-    // Draw the second view to the context
-    [secondView.layer renderInContext:context];
-    
-    // Reposition the context's origin to it's initial location
-    CGContextTranslateCTM(context, -xTranslation, 0);
-    
-    // upload to OpenGL
-    glGenTextures(1, &_textureName);
-	glBindTexture(GL_TEXTURE_2D, self.textureName);
-    
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, atlasSize.width, atlasSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
-
-    // Uncomment to see the texture exported to a file
-    
-//    UIImage *image = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
-//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-//    NSData * binaryImageData = UIImagePNGRepresentation(image);
-//    [binaryImageData writeToFile:[basePath stringByAppendingPathComponent:@"myfile.png"] atomically:YES];
-    
-    // clean up
-    CGContextRelease(context);
-    free(pixelBuffer);
+    return self.textureAtlas.textureSize;
 }
 
 - (GLKMatrix4)modelMatrix
@@ -168,7 +105,7 @@ typedef struct {
 
 - (void)render
 {
-    self.effect.texture2d0.name = self.textureName;
+    self.effect.texture2d0.name = self.textureAtlas.textureName;
     self.effect.texture2d0.enabled = GL_TRUE;
     self.effect.texture2d0.envMode = GLKTextureEnvModeModulate;
     GLKMatrix4 modelMatrix = self.modelMatrix;

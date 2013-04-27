@@ -32,6 +32,7 @@
 		CBF75C061727091500C1C2CF /* leftArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C041727091500C1C2CF /* leftArrows@2x.png */; };
 		CBF75C0917270A9D00C1C2CF /* rightArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C0717270A9D00C1C2CF /* rightArrows.png */; };
 		CBF75C0A17270A9D00C1C2CF /* rightArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C0817270A9D00C1C2CF /* rightArrows@2x.png */; };
+		CBF75C11172B123500C1C2CF /* TextureAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF75C10172B123500C1C2CF /* TextureAtlas.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,8 @@
 		CBF75C041727091500C1C2CF /* leftArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrows@2x.png"; sourceTree = "<group>"; };
 		CBF75C0717270A9D00C1C2CF /* rightArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrows.png; sourceTree = "<group>"; };
 		CBF75C0817270A9D00C1C2CF /* rightArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrows@2x.png"; sourceTree = "<group>"; };
+		CBF75C0F172B123500C1C2CF /* TextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlas.h; sourceTree = "<group>"; };
+		CBF75C10172B123500C1C2CF /* TextureAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureAtlas.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				CB4A36F11711EF18007BBEF9 /* Sprite.h */,
 				CB4A36F21711EF18007BBEF9 /* Sprite.m */,
 				CB0D012417133BA10016AA12 /* glUtil.h */,
+				CBF75C0F172B123500C1C2CF /* TextureAtlas.h */,
+				CBF75C10172B123500C1C2CF /* TextureAtlas.m */,
 			);
 			name = OpenGL;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */,
 				CB069863171C729D00C81011 /* SecondViewController.m in Sources */,
 				CB681781171DDB56007B4BA2 /* NavigationViewController.m in Sources */,
+				CBF75C11172B123500C1C2CF /* TextureAtlas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
