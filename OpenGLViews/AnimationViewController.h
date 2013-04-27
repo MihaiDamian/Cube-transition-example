@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, AnimationDirection)
 };
 
 
+// A controller that renders a cube animation similar to CATransition's private 'cube' animation type
 @interface AnimationViewController : GLKViewController
 
 @property (nonatomic, weak) id<AnimationViewControllerDelegate> animationDelegate;

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-// TODO: find a better name
+// Simulates the UInavigationController. Uses AnimationViewController to display a custom animation when transitioning between view controllers
 @interface NavigationViewController : UIViewController
 
 - (id)initWithInitialViewController:(UIViewController*)controller;

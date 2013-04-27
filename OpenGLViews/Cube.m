@@ -1,12 +1,12 @@
 //
-//  Sprite.m
+//  Cube.m
 //  OpenGLViews
 //
 //  Created by Mihai Damian on 4/7/13.
 //  Copyright (c) 2013 Mihai Damian. All rights reserved.
 //
 
-#import "Sprite.h"
+#import "Cube.h"
 #import "TextureAtlas.h"
 
 
@@ -17,7 +17,7 @@ typedef struct {
 } TexturedVertex;
 
 
-@interface Sprite()
+@interface Cube()
 {
     TexturedVertex _texturedVertices[12];
 }
@@ -29,7 +29,7 @@ typedef struct {
 @end
 
 
-@implementation Sprite
+@implementation Cube
 
 - (id)initWithTextureAtlas:(TextureAtlas*)atlas effect:(GLKBaseEffect *)effect
 {
@@ -109,7 +109,7 @@ typedef struct {
     self.effect.texture2d0.enabled = GL_TRUE;
     self.effect.texture2d0.envMode = GLKTextureEnvModeModulate;
     GLKMatrix4 modelMatrix = self.modelMatrix;
-    self.effect.transform.modelviewMatrix = GLKMatrix4Multiply([self.delegate viewMatrix], modelMatrix);
+    self.effect.transform.modelviewMatrix = GLKMatrix4Multiply([self.dataSource viewMatrix], modelMatrix);
     
     [self.effect prepareToDraw];
     

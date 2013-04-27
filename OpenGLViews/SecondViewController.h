@@ -12,6 +12,7 @@
 @class NavigationViewController;
 
 
+// A demo view controller
 @interface SecondViewController : UIViewController
 
 @property (nonatomic, weak) NavigationViewController *navigationViewController;

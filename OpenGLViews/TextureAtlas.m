@@ -89,6 +89,7 @@
 
 - (void)dealloc
 {
+    // OpenGL allocated resources need to be dealloced manually
     glDeleteTextures(1, &_textureName);
 }
 

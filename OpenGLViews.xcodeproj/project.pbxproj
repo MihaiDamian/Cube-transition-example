@@ -26,7 +26,7 @@
 		CB4A36E0170E116F007BBEF9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36DF170E116F007BBEF9 /* OpenGLES.framework */; };
 		CB4A36E917102038007BBEF9 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = CB4A36E817102038007BBEF9 /* texture.png */; };
 		CB4A36F017109810007BBEF9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4A36EF17109810007BBEF9 /* GLKit.framework */; };
-		CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36F21711EF18007BBEF9 /* Sprite.m */; };
+		CB4A36F31711EF18007BBEF9 /* Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4A36F21711EF18007BBEF9 /* Cube.m */; };
 		CB681781171DDB56007B4BA2 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB681780171DDB56007B4BA2 /* NavigationViewController.m */; };
 		CBF75C051727091500C1C2CF /* leftArrows.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C031727091500C1C2CF /* leftArrows.png */; };
 		CBF75C061727091500C1C2CF /* leftArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF75C041727091500C1C2CF /* leftArrows@2x.png */; };
@@ -43,7 +43,6 @@
 		CB0D011F1713364F0016AA12 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		CB0D01201713364F0016AA12 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		CB0D01211713364F0016AA12 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
-		CB0D012417133BA10016AA12 /* glUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glUtil.h; sourceTree = "<group>"; };
 		CB4A36A1170E04CE007BBEF9 /* OpenGLViews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLViews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB4A36A4170E04CE007BBEF9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CB4A36A6170E04CE007BBEF9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,8 +62,8 @@
 		CB4A36DF170E116F007BBEF9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		CB4A36E817102038007BBEF9 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 		CB4A36EF17109810007BBEF9 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		CB4A36F11711EF18007BBEF9 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
-		CB4A36F21711EF18007BBEF9 /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
+		CB4A36F11711EF18007BBEF9 /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
+		CB4A36F21711EF18007BBEF9 /* Cube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cube.m; sourceTree = "<group>"; };
 		CB68177F171DDB56007B4BA2 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		CB681780171DDB56007B4BA2 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		CBF75C031727091500C1C2CF /* leftArrows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrows.png; sourceTree = "<group>"; };
@@ -169,23 +168,9 @@
 				CB68177F171DDB56007B4BA2 /* NavigationViewController.h */,
 				CB681780171DDB56007B4BA2 /* NavigationViewController.m */,
 				CB069865171DD1EC00C81011 /* NavigationViewController.xib */,
-				CB4A36CD170E064E007BBEF9 /* AnimationViewController.h */,
-				CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */,
-				CB4A36D3170E0749007BBEF9 /* OpenGL */,
+				CBF75C12172BEE5400C1C2CF /* CubeAnimation */,
 			);
 			name = NavigationViewController;
-			sourceTree = "<group>";
-		};
-		CB4A36D3170E0749007BBEF9 /* OpenGL */ = {
-			isa = PBXGroup;
-			children = (
-				CB4A36F11711EF18007BBEF9 /* Sprite.h */,
-				CB4A36F21711EF18007BBEF9 /* Sprite.m */,
-				CB0D012417133BA10016AA12 /* glUtil.h */,
-				CBF75C0F172B123500C1C2CF /* TextureAtlas.h */,
-				CBF75C10172B123500C1C2CF /* TextureAtlas.m */,
-			);
-			name = OpenGL;
 			sourceTree = "<group>";
 		};
 		CBF75BF81725C64400C1C2CF /* resources */ = {
@@ -198,6 +183,19 @@
 			);
 			name = resources;
 			path = ../resources;
+			sourceTree = "<group>";
+		};
+		CBF75C12172BEE5400C1C2CF /* CubeAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				CB4A36CD170E064E007BBEF9 /* AnimationViewController.h */,
+				CB4A36CE170E064E007BBEF9 /* AnimationViewController.m */,
+				CB4A36F11711EF18007BBEF9 /* Cube.h */,
+				CB4A36F21711EF18007BBEF9 /* Cube.m */,
+				CBF75C0F172B123500C1C2CF /* TextureAtlas.h */,
+				CBF75C10172B123500C1C2CF /* TextureAtlas.m */,
+			);
+			name = CubeAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +274,7 @@
 				CB4A36B1170E04CE007BBEF9 /* main.m in Sources */,
 				CB4A36B5170E04CE007BBEF9 /* AppDelegate.m in Sources */,
 				CB4A36D0170E064E007BBEF9 /* AnimationViewController.m in Sources */,
-				CB4A36F31711EF18007BBEF9 /* Sprite.m in Sources */,
+				CB4A36F31711EF18007BBEF9 /* Cube.m in Sources */,
 				CB0D01221713364F0016AA12 /* FirstViewController.m in Sources */,
 				CB069863171C729D00C81011 /* SecondViewController.m in Sources */,
 				CB681781171DDB56007B4BA2 /* NavigationViewController.m in Sources */,

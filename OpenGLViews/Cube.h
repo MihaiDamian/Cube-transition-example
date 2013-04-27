@@ -1,5 +1,5 @@
 //
-//  Sprite.h
+//  Cube.h
 //  OpenGLViews
 //
 //  Created by Mihai Damian on 4/7/13.
@@ -13,16 +13,18 @@
 @class TextureAtlas;
 
 
-@protocol SpriteDelegate
+@protocol CubeDataSource
 
 - (GLKMatrix4)viewMatrix;
 
 @end
 
 
-@interface Sprite : NSObject
+// A class that knows how to draw a textured cube. In practice, since our animation never shows more than two faces of a cube this
+// class only constructs two cube faces.
+@interface Cube : NSObject
 
-@property (nonatomic, weak) id<SpriteDelegate> delegate;
+@property (nonatomic, weak) id<CubeDataSource> dataSource;
 @property (nonatomic, assign) GLfloat rotation;
 
 - (id)initWithTextureAtlas:(TextureAtlas*)atlas effect:(GLKBaseEffect *)effect;

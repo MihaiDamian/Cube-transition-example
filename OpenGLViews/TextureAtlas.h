@@ -10,8 +10,6 @@
 
 
 // Creates an OpenGL texture from two views. Assumes the views have the same size and content scale factor.
-
-
 @interface TextureAtlas : NSObject
 
 // One texture containing the two rendered views

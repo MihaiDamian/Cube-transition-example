@@ -7,7 +7,7 @@
 //
 
 #import "AnimationViewController.h"
-#import "Sprite.h"
+#import "Cube.h"
 #import "TextureAtlas.h"
 
 
@@ -15,9 +15,9 @@ static GLfloat FOV = M_PI / 4;
 static GLfloat TargetFPS = 60;
 
 
-@interface AnimationViewController () <SpriteDelegate>
+@interface AnimationViewController () <CubeDataSource>
 
-@property (nonatomic, strong) Sprite *sprite;
+@property (nonatomic, strong) Cube *sprite;
 @property (nonatomic, assign) AnimationDirection direction;
 
 @end
@@ -78,14 +78,14 @@ static GLfloat TargetFPS = 60;
     if(self.direction == AnimationDirectionForward)
     {
         TextureAtlas *atlas = [[TextureAtlas alloc] initWithFirstView:initialView secondView:finalView];
-        self.sprite = [[Sprite alloc] initWithTextureAtlas:atlas effect:effect];
+        self.sprite = [[Cube alloc] initWithTextureAtlas:atlas effect:effect];
     }
     else if(self.direction == AnimationDirectionBack)
     {
         TextureAtlas *atlas = [[TextureAtlas alloc] initWithFirstView:finalView secondView:initialView];
-        self.sprite = [[Sprite alloc] initWithTextureAtlas:atlas effect:effect];
+        self.sprite = [[Cube alloc] initWithTextureAtlas:atlas effect:effect];
     }
-    self.sprite.delegate = self;
+    self.sprite.dataSource = self;
     if(self.direction == AnimationDirectionBack)
     {
         self.sprite.rotation = -M_PI / 2;
@@ -131,7 +131,7 @@ static GLfloat TargetFPS = 60;
     [self.sprite render];
 }
 
-#pragma mark SpriteDelegate
+#pragma mark CubeDataSource
 - (GLKMatrix4)viewMatrix
 {
     // Calculate eye Z position so that a slice through Z 0 has the same size as the view
