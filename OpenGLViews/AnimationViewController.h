@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, AnimationDirection)
 @interface AnimationViewController : GLKViewController
 
 @property (nonatomic, weak) id<AnimationViewControllerDelegate> animationDelegate;
-// Default is 1 seconds
+// Default is 1 second
 @property (nonatomic, assign) NSTimeInterval duration;
 
 // Do not start the animation more than once.
