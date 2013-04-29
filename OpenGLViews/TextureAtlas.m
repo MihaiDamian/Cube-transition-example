@@ -35,13 +35,10 @@
         // We'll be drawing the views side by side so we reserve double the width
         CGSize atlasSize = CGSizeMake(_textureSize.width * 2, view1.bounds.size.height * contentScaleFactor);
         
-        // make space for an RGBA image of the view
-        GLubyte *pixelBuffer = (GLubyte *)malloc(4 * atlasSize.width * atlasSize.height);
-        
         // create a suitable CoreGraphics context
         CGColorSpaceRef colourSpace = CGColorSpaceCreateDeviceRGB();
         CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big;
-        CGContextRef context = CGBitmapContextCreate(pixelBuffer, atlasSize.width, atlasSize.height, 8, 4 * atlasSize.width, colourSpace, bitmapInfo);
+        CGContextRef context = CGBitmapContextCreate(NULL, atlasSize.width, atlasSize.height, 8, 4 * atlasSize.width, colourSpace, bitmapInfo);
         CGColorSpaceRelease(colourSpace);
         
         // Scale factor of the context and the view to be rendered need to match
@@ -69,6 +66,8 @@
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         
+        // Get the image data
+        GLubyte *pixelBuffer = CGBitmapContextGetData(context);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, atlasSize.width, atlasSize.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
         
         // Uncomment to see the texture exported to a file
@@ -81,7 +80,6 @@
         
         // clean up
         CGContextRelease(context);
-        free(pixelBuffer);
     }
     
     return self;
